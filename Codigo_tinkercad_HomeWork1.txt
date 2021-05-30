@@ -1,0 +1,60 @@
+// Homework 1
+// EQUIPO: Escarabajos Crew(Avila, Huaysara, Valenzuela)
+// Curso: IOT
+// Semestre: 2021-I
+// Ciclo: 7
+// Docente: Jose Alfredo Herrera Quispe
+int rojo = 13;
+int amarillo = 12;
+int verde = 11;
+int btn = 2;
+
+void setup()
+{
+  pinMode(rojo, OUTPUT);
+  pinMode(verde, OUTPUT);
+  pinMode(amarillo, OUTPUT);
+  
+}
+
+void loop()
+{ 
+  digitalWrite(rojo, LOW);
+  digitalWrite(verde, HIGH);
+  digitalWrite(amarillo, LOW);
+  delay(1000); 
+  validar(3000);
+  parpadear(verde, 500, 100);
+  
+  digitalWrite(rojo, LOW);
+  digitalWrite(verde, LOW);
+  digitalWrite(amarillo, HIGH);
+  delay(500); 
+  
+  
+  digitalWrite(rojo, HIGH);
+  digitalWrite(verde, LOW);
+  digitalWrite(amarillo, LOW);
+  delay(4000); 
+  parpadear(rojo, 500, 100);
+  
+  
+}
+
+void parpadear(int color, int T, int t){ //cambia de HIGH a LOW y de LOW a HIGH cada t ms por T ms
+  for(int i = 0; i<=T; i+=2*t){
+    digitalWrite(color, HIGH);
+    delay(t);
+    digitalWrite(color, LOW);
+    delay(t);
+  }
+}
+
+void validar(int T){ //preguntar por T ms cada 1ms
+  for(int i = 0; i<=T; i++){
+    if(digitalRead(btn)==1){
+      break;
+    }
+    delay(1);
+  }
+}
